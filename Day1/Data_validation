@@ -1,0 +1,37 @@
+package homework1;
+
+import java.util.Scanner;
+
+public class Valid_date {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter Year: ");
+        int year=sc.nextInt();
+
+        System.out.print("Enter Month: ");
+        int month=sc.nextInt();
+
+        System.out.print("Enter Day: ");
+        int day=sc.nextInt();
+
+        int[] days = {31,28,31,30,31,30,31,31,30,31,30,31};
+        if((year%400==0) || (year%4==0 && year%100!=0)){
+            days[1]=29;
+        }
+
+        if( month<1 || month>12 ||day<1 || day>days[month-1] ){
+            System.out.print("Invalid Date");
+        }
+        int i,completedDays=0;
+        for(i=0;i<month-1;i+=1){
+            completedDays+=days[i];
+
+        }
+        completedDays+=day;
+        int totalDays=days[1]==29 ? 366 :365;
+        int remaingDays;
+        remaingDays=totalDays-completedDays;
+        System.out.println("Completed Days: "+completedDays);
+        System.out.println("Remaining Days: "+remaingDays);
+    }
+}
